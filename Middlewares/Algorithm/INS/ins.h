@@ -17,8 +17,8 @@
   ******************************************************************************
   */ 
 
-#ifndef INERTIAL_NAVIGATION_H
-#define INERTIAL_NAVIGATION_H
+#ifndef INS_H
+#define INS_H
 
 #include "mpl_cal.h"
 
@@ -28,10 +28,10 @@
 #include "stm32f4xx.h"
 /* Private define ------------------------------------------------------------*/
 
-/* ¸üÐÂ×´Ì¬µÄÊ±¼ä¼ä¸ô(ms) */
+/* ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½(ms) */
 #define UPDATE_TIME 	1	
 	 
-/* »ý·Ö´ÎÊý */	 
+/* ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ */	 
 #define	 	COUNT_ACC 	3
 #define 	COUNT_SPEED 4		
 
@@ -43,22 +43,22 @@
 /* Private type --------------------------------------------------------------*/
 typedef struct 
 {
-	float speed[3];	// È«¾ÖÏÂx,y,zÖáµÄËÙ¶È
-	float dis[3];		//È«¾ÖÏÂx,y,zÖáµÄÎ»ÒÆÁ¿
-	float height;		//È«¾Ö×ø±êÏÂµÄ¸ß¶È
+	float speed[3];	// È«ï¿½ï¿½ï¿½ï¿½x,y,zï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
+	float dis[3];		//È«ï¿½ï¿½ï¿½ï¿½x,y,zï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½
+	float height;		//È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄ¸ß¶ï¿½
 } g_status_t;	
 
 typedef struct
 {
-	/* ´æ´¢Êý¾Ý */
+	/* ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½ */
 	float acc[3][COUNT_ACC];
 	float speed[3][COUNT_SPEED];
 	
-	/* Êý¾Ý¶ÁÈ¡µÄÊ±¼äµãÊý×é */
+	/* ï¿½ï¿½ï¿½Ý¶ï¿½È¡ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	float time_acc[COUNT_ACC];
 	float time_speed[COUNT_SPEED];	
 	
-	/* ¼ÆÊýÆ÷ */
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	uint8_t count_i;
 	uint8_t count_j;
 } record_t;
@@ -70,7 +70,7 @@ class Navigation
 public:
 	Navigation() : integ(Lagrange, Parabola, 15)
 	{
-	 /* ×´Ì¬Á¿³õÊ¼»¯ */
+	 /* ×´Ì¬ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ */
 	 for(int i = 0; i < 3; i ++) 
 	 {
 		 status.dis[i] = 0;
@@ -78,7 +78,7 @@ public:
 	 }
 	 status.height = 0;
 	 
-	 /* ¼ÇÂ¼Á¿³õÊ¼»¯ */
+	 /* ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ */
 	 record.count_i = 0;
 	 record.count_j = 0;
 	 for(int i = 0; i < COUNT_ACC; i ++) 
@@ -97,7 +97,7 @@ public:
 							float sppedx, float sppedy, float sppedz,
 								float disx, float disy, float disz) : integ(a, b, ac)
 	{
-		/* ×´Ì¬³õÊ¼»¯ */
+		/* ×´Ì¬ï¿½ï¿½Ê¼ï¿½ï¿½ */
 		status.speed[0] = sppedx;	 
 		status.speed[1] = sppedy;	
 		status.speed[2] = sppedz;	
@@ -108,7 +108,7 @@ public:
 		
 		status.height = disz;
 		
-		/* ¼ÇÂ¼Á¿³õÊ¼»¯ */
+		/* ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ */
 		 record.count_i = 0;
 		 record.count_j = 0;
 		 for(int i = 0; i < COUNT_ACC; i ++) 
@@ -125,16 +125,16 @@ public:
 	}								
 	~Navigation(){};
 	void Update(const float* acc_x,const float* acc_y,const float* acc_z);
-	g_status_t status;	// ´æ´¢µ±Ç°×´Ì¬µÄ½á¹¹Ìå
+	g_status_t status;	// ï¿½æ´¢ï¿½ï¿½Ç°×´Ì¬ï¿½Ä½á¹¹ï¿½ï¿½
 private:
 	
-	/* »ñÈ¡ËÙ¶È */
+	/* ï¿½ï¿½È¡ï¿½Ù¶ï¿½ */
 	void Get_Speed(const float* acc_x, const float* acc_y, const float* acc_z, const float* t, uint16_t n);
 
-	/* »ñÈ¡Î»ÒÆÁ¿ */
+	/* ï¿½ï¿½È¡Î»ï¿½ï¿½ï¿½ï¿½ */
 	void Get_Distance(const float* speed_x, const float* speed_y, const float* speed_z, const float* t, uint16_t n);								
-	Integral_Lib integ;			// »ý·ÖËã·¨
-	record_t record;				// ¼ÇÂ¼¹ý³ÌÁ¿µÄ½á¹¹Ìå
+	Integral_Lib integ;			// ï¿½ï¿½ï¿½ï¿½ï¿½ã·¨
+	record_t record;				// ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½á¹¹ï¿½ï¿½
 };
 
 /* Exported variables --------------------------------------------------------*/

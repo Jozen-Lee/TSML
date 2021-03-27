@@ -5,7 +5,7 @@
   * @author  TuTu 2250017028@qq.com
   * @version 0.0.1
   ******************************************************************************
-  * This library inherit the architechure of SRML and is open source for all developers.
+  * This library inherit the architechure of TSML and is open source for all developers.
   * If you find any mistakes, plz criticize and correct them.
   * 
   * By downloading, copying, installing or using the software you agree to this license.
@@ -29,52 +29,37 @@
 /** @addtogroup Drivers
   * @{
   */
-#include <srml_config.h>
+#include <twml_config.h>
 /* Devices header begin */
-#if USE_SRML_REFEREE
-//#include "Devices/referee.h"
+#if USE_TWML_BMP280
+#include "Devices/Barometer/BMP280/bmp280.h"
 #endif
-#if USE_SRML_DJI_MOTOR
-#include "Devices/motor.h"
+#if USE_TWML_BME280
+#include "Devices/Barometer/BME280/bme280_app.h"
 #endif
-#if USE_SRML_OTHER_MOTOR
-#include "Devices/motor_AK80.h"
+#if USE_TWML_FLASH
+#include "Devices/FLASH/flash.h"
 #endif
-#if USE_SRML_DR16
-#include "Devices/dr16.h"
+#if USE_TSML_IMU
+#include "Devices/IMU/imu.h"
 #endif
-#if USE_SRML_BMX055
-#include "Devices/BMX055/BMX055_config.h"
+#if USE_TSML_MT9V032
+#include "Devices/MT9V034/MT9V032.h"
 #endif
-#if USE_SRML_MPU6050
-#include "Devices/MPU6050/mpu6050_config.h"
+#if USE_TSML_SDCARD
+#include "Devices/SDcard/SDcard.h"
 #endif
-#if USE_SRML_W25Qx
-#include "Devices/Flash/W25Qx.h"
-#endif
-#if USE_SRML_FATFS
-#include "Devices/Flash/FATFS/diskio.h"
+#if USE_TSML_SERVO
+#include "Devices/Servo/Servo.h"
 #endif
 /* Devices header end */
 
 /* Components header begin */
-#if USE_SRML_I2C
-#include "Components/drv_i2c.h"
+#if USE_TSML_I2C
+#include "Components/I2C/tutu_drv_i2c.h"
 #endif
-#if USE_SRML_SPI
-#include "Components/drv_spi.h"
-#endif
-#if USE_SRML_CAN
-#include "Components/drv_can.h"
-#endif
-#if USE_SRML_UART
-#include "Components/drv_uart.h"
-#endif
-#if USE_SRML_TIMER
-#include "Components/drv_timer.h"
-#endif
-#if USE_SRML_FLASH
-#include "Components/drv_flash.h"
+#if USE_TSML_SPI
+#include "Components/SPI/tutu_driver_spi.h"
 #endif
 /* Components header end */
 

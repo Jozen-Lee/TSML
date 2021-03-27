@@ -16,13 +16,13 @@
                               How to use this driver  
   ==============================================================================
     @note
-      -# ´´½¨ÊµÀý¶ÔÏó(¿ÉÒÔ´ø²Î»ò²»´ø²Î´´½¨)
+      -# ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Ô´ï¿½ï¿½Î»ò²»´ï¿½ï¿½Î´ï¿½ï¿½ï¿½)
 				Navigation nav;
          
-      -# ¸üÐÂ×´Ì¬
+      -# ï¿½ï¿½ï¿½ï¿½×´Ì¬
 				nav.Update(&acc_x,const &acc_y,const &acc_z);
     @warning	
-      -# ÐèÒª`integral_algorithm`Ö§³Ö¡£
+      -# ï¿½ï¿½Òª`integral_algorithm`Ö§ï¿½Ö¡ï¿½
 	  
   ******************************************************************************
   * @attention
@@ -38,22 +38,22 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "inertial_navigation.h"
+#include "ins.h"
 /* Private define ------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
-Navigation nav;	// ÊµÀý¶ÔÏó
+Navigation nav;	// Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /* Private type --------------------------------------------------------------*/
 /* Private function declarations ---------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 
 /**
- *  @brief »ñÈ¡ËÙ¶È  
- *  @param[in] 	cal 										Ëã·¨½Ó¿Ú
- *  @param[out] sta											ÓÃÓÚ¼ÇÂ¼µÄ×´Ì¬Á¿
- *  @param[in] 	acc_x, acc_y, acc_z 		ÓÃÓÚ»ý·ÖµÄÈýÖá¼ÓËÙ¶ÈµÄÊýÖµ
- *  @param[in] 	t	 											»ý·ÖÊ±¼äÊý×é,´óÐ¡Óë¼ÓËÙ¶ÈÊý×éÏàÆ¥Åä
- *  @param[in] 	n	 											¼ÓËÙ¶ÈÊý×éµÄ´óÐ¡ 
+ *  @brief ï¿½ï¿½È¡ï¿½Ù¶ï¿½  
+ *  @param[in] 	cal 										ï¿½ã·¨ï¿½Ó¿ï¿½
+ *  @param[out] sta											ï¿½ï¿½ï¿½Ú¼ï¿½Â¼ï¿½ï¿½×´Ì¬ï¿½ï¿½
+ *  @param[in] 	acc_x, acc_y, acc_z 		ï¿½ï¿½ï¿½Ú»ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶Èµï¿½ï¿½ï¿½Öµ
+ *  @param[in] 	t	 											ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½
+ *  @param[in] 	n	 											ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½Ð¡ 
  *  @return void
  */
  void Navigation::Get_Speed(const float* acc_x, const float* acc_y, const float* acc_z, const float* t, uint16_t n)
@@ -64,13 +64,13 @@ Navigation nav;	// ÊµÀý¶ÔÏó
  }
  
 /**
- *  @brief »ñÈ¡Î»ÒÆÁ¿  
- *  @param[in] 	cal 										Ëã·¨½Ó¿Ú
- *  @param[out] sta											ÓÃÓÚ¼ÇÂ¼µÄ×´Ì¬Á¿
- *  @param[in] 	acc_x, acc_y, acc_z 		ÓÃÓÚ»ý·ÖµÄÈýÖá¼ÓËÙ¶ÈµÄÊýÖµ
- *  @param[in] 	speed_x,speed_y,speed_z ÓÃÓÚ»ý·ÖµÄÈýÖáËÙ¶ÈµÄÊýÖµ
- *  @param[in] 	t	 											»ý·ÖÊ±¼äÊý×é,´óÐ¡ÓëËÙ¶ÈÊý×éÏàÆ¥Åä
- *  @param[in] 	n	 											ËÙ¶ÈÊý×éµÄ´óÐ¡ 
+ *  @brief ï¿½ï¿½È¡Î»ï¿½ï¿½ï¿½ï¿½  
+ *  @param[in] 	cal 										ï¿½ã·¨ï¿½Ó¿ï¿½
+ *  @param[out] sta											ï¿½ï¿½ï¿½Ú¼ï¿½Â¼ï¿½ï¿½×´Ì¬ï¿½ï¿½
+ *  @param[in] 	acc_x, acc_y, acc_z 		ï¿½ï¿½ï¿½Ú»ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶Èµï¿½ï¿½ï¿½Öµ
+ *  @param[in] 	speed_x,speed_y,speed_z ï¿½ï¿½ï¿½Ú»ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶Èµï¿½ï¿½ï¿½Öµ
+ *  @param[in] 	t	 											ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½
+ *  @param[in] 	n	 											ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½Ð¡ 
  *  @return void
  */
  void Navigation::Get_Distance(const float* speed_x, const float* speed_y, const float* speed_z, const float* t, uint16_t n)
@@ -81,14 +81,14 @@ Navigation nav;	// ÊµÀý¶ÔÏó
  } 
  
 /**
- *  @brief ¸üÐÂ×´Ì¬ 
- *  @param[in] acc_x, acc_y, acc_z È«¾Ö×ø±êÖáÏÂµÄÈýÖá¼ÓËÙ¶È
+ *  @brief ï¿½ï¿½ï¿½ï¿½×´Ì¬ 
+ *  @param[in] acc_x, acc_y, acc_z È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
  *  @return void
  */ 
  void Navigation::Update(const float* acc_x,const float* acc_y,const float* acc_z)
  { 
 	 
-	 /* ¼ÇÂ¼¼ÓËÙ¶È */
+	 /* ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Ù¶ï¿½ */
 	 record.acc[0][record.count_i] = *acc_x;
 	 record.acc[1][record.count_i] = *acc_y;
 	 record.acc[2][record.count_i] = *acc_z;
@@ -96,10 +96,10 @@ Navigation nav;	// ÊµÀý¶ÔÏó
 	 
 	 if(record.count_i == 0) 
 	 {
-		 /* ¸üÐÂËÙ¶È */
+		 /* ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½ */
 		 Get_Speed(record.acc[0], record.acc[1], record.acc[2], record.time_acc, COUNT_ACC);
 		 
-		 /* ¼ÇÂ¼ËÙ¶È */
+		 /* ï¿½ï¿½Â¼ï¿½Ù¶ï¿½ */
 		 record.speed[0][record.count_j] = status.speed[0];
 		 record.speed[1][record.count_j] = status.speed[1];
 		 record.speed[2][record.count_j] = status.speed[2];
@@ -107,7 +107,7 @@ Navigation nav;	// ÊµÀý¶ÔÏó
 
 		 if(record.count_j == 0) 
 		 {
-			 /* ¸üÐÂÎ»ÒÆÁ¿ */
+			 /* ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ */
 			 Get_Distance(record.speed[0], record.speed[1], record.speed[2], record.time_speed, COUNT_SPEED);
 		 }
 	 }
