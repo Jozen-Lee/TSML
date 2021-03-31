@@ -293,17 +293,20 @@ uint8_t IMU::Compass_Calibration(void)
 uint8_t IMU_Lib::run_self_test(void)
 {
 	int result;
+	uint8_t to_check;
 	long gyro[3], accel[3]; 
 	
 	/* ×Ô²â */
 #if defined(MPU6500) || defined(MPU9250)
 	result = mpu_run_6500_self_test(gyro, accel, 0);
+	to_check = 0x7;
 #else
 	result = mpu_run_self_test(gyro, accel);
+	to_check = 0x3;
 #endif	
 	
 	/* ²âÊÔÍ¨¹ý */
-	if (result == 0x7) 
+	if (result == to_check) 
 	{
 		unsigned short accel_sens;
 		float gyro_sens;
