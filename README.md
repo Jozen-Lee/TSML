@@ -42,7 +42,7 @@
   $ git submodule add https://git.scutbot.cn/13726346614/TSML.git
   ```
 
-  - clone已有的工程时拉取SRML的代码
+  - clone已有的工程时拉取TSML的代码
 
   ```bash
   $ git submodule init
