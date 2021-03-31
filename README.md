@@ -45,8 +45,8 @@
   - clone已有的工程时拉取TSML的代码
 
   ```bash
-  $ git submodule init
-  $ git submodule update
+  $ git submodule updata --init
+  $ git submodule update --remote
   ```
 
   - 更新 TSML 库

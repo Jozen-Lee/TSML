@@ -23,7 +23,7 @@
 #include <string.h>
 #include <math.h>
 #include "inv_mpu.h"
-#include "imu.h"
+#include "Drivers/Devices/IMU/imu.h"
 
 /* The following functions must be defined for this platform:
  * i2c_write(unsigned char slave_addr, unsigned char reg_addr,
@@ -59,8 +59,8 @@ unsigned char *mpl_key = (unsigned char*)"eMPL 5.1";
 #define get_ms      dmp_get_ms
 
 
-#define log_i 	printf	//´òÓ¡ÐÅÏ¢
-#define log_e  	printf	//´òÓ¡ÐÅÏ¢
+#define log_i 	printf	//ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢
+#define log_e  	printf	//ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢
 
 /* labs is already defined by TI's toolchain. */
 /* fabs is for doubles. fabsf is for floats. */
