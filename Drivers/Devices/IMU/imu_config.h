@@ -25,14 +25,14 @@ extern "C" {
 #endif
 
 /* -------------------- IMU型号 -------------------------- */
-#define MPU6050 
+//#define MPU6050 
 //#define MPU6500 	 
 //#define MPU9150 
-//#define MPU9250 	
+#define MPU9250 	
 	
 /* -------------------- 工作模式 ------------------------- */
-#define DMP_MODE 	
-//#define USER_MODE 
+#define IMU_DMP_MODE 	
+//#define IMU_USER_MODE 
 	
 
 /* ----------------- 陀螺仪工作频率 ---------------------- */

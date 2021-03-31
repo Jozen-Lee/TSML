@@ -28,7 +28,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #if defined(USE_HAL_DRIVER)
-  #if defined(STM32F405xx) || defined(STM32F407xx) || defined(STM32F429xx)
+  #if defined(STM32F405xx) || defined(STM32F407xx) || defined(STM32F429xx) || defined(STM32F411xE)
     #include <stm32f4xx_hal.h>
   #endif
   #if defined(STM32F103xx)

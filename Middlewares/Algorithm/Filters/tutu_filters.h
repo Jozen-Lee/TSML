@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * Copyright (c) 2019 - ~, SCUT-RobotLab Development Team
-  * @file    filter.h
+  * @file    tutu_filter.h
   * @author  buff buffdemail@163.com 
   * @brief   Filter set in general signal process and analysis.
   ******************************************************************************
@@ -16,8 +16,8 @@
   * All rights reserved.</center></h2>
   ******************************************************************************
   */
-#ifndef MY_FILTERS_H
-#define MY_FILTERS_H
+#ifndef TUTU_FILTERS_H
+#define TUTU_FILTERS_H
 
 /* Includes ------------------------------------------------------------------*/
 #ifdef __cplusplus
@@ -27,7 +27,7 @@
 #include <math.h>
 /* Exported function declarations --------------------------------------------*/
 
-/* ÂË²¨Àà */
+/* ï¿½Ë²ï¿½ï¿½ï¿½ */
 class Filter
 {
 	public:
@@ -47,7 +47,7 @@ class Filter
 };
 
 
-/* µÍÍ¨ÂË²¨ */
+/* ï¿½ï¿½Í¨ï¿½Ë²ï¿½ */
 class LowPassFilter : public Filter
 {
   public:
@@ -70,12 +70,12 @@ class LowPassFilter : public Filter
 };
 
 
-/* ÖÐÖµÂË²¨	*/
+/* ï¿½ï¿½Öµï¿½Ë²ï¿½	*/
 template<int Length> 	
 class MedianFilter : public Filter
 {
   /**
-    @note ÂË²¨¿í¶È(1,100)
+    @note ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½(1,100)
    */
   public:
 	MedianFilter()
@@ -90,7 +90,7 @@ class MedianFilter : public Filter
   	virtual void in(float num)
     {
       now_num = num;
-      /* flag=LengthÈ»ºóµÝ¼õ±£Ö¤¿í¶ÈÄÚ¶¼ÊÇÓÐÐ§²¨Öµ */
+      /* flag=LengthÈ»ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½Öµ */
       flag > 0? flag-- : 0;										
       buffer_num[where_num++] = num;
       where_num %= Length; 
@@ -102,7 +102,7 @@ class MedianFilter : public Filter
         return now_num;
       else
         {
-          /* ×¼±¸ÅÅÐò */
+          /* ×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
           memcpy(sort_num,buffer_num,sizeof(sort_num));	
           std::sort(sort_num,sort_num+Length);
           return sort_num[int(Length/2)];
@@ -116,13 +116,13 @@ class MedianFilter : public Filter
 };
 
 
-/* ¾ùÖµÂË²¨ */
+/* ï¿½ï¿½Öµï¿½Ë²ï¿½ */
 template<int Length> 	
 class MeanFilter : public Filter
 {
   public:
   /**
-    @note ÂË²¨¿í¶È(1,100)
+    @note ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½(1,100)
    */
 	MeanFilter()
 	{
@@ -138,10 +138,10 @@ class MeanFilter : public Filter
   	virtual void in(float num)
     {
       now_num = num;
-      sum -= buffer_num[where_num];			  /*<! sum¼õÈ¥¾ÉÖµ */
-      sum += num;													/*<! sum¼ÓÉÏÐÂÖµ */
+      sum -= buffer_num[where_num];			  /*<! sumï¿½ï¿½È¥ï¿½ï¿½Öµ */
+      sum += num;													/*<! sumï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ */
       buffer_num[where_num++] = num;
-      flag > 0? flag-- : 0;								/*<!flag=LengthÈ»ºóµÝ¼õ±£Ö¤¿í¶ÈÄÚ¶¼ÊÇÓÐÐ§²¨Öµ */
+      flag > 0? flag-- : 0;								/*<!flag=LengthÈ»ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½Öµ */
       where_num %= Length; 
     }
     
@@ -167,12 +167,12 @@ class MeanFilter : public Filter
   private:
   float buffer_num[Length];
 	float now_num;
-	float sum; 						/*<! ¿í¶ÈºÍÊý×ÖºÍ */
+	float sum; 						/*<! ï¿½ï¿½ï¿½Èºï¿½ï¿½ï¿½ï¿½Öºï¿½ */
 	int flag,where_num;
 };
 
 
-/* ´øÏÞ·ùµÄ¾ùÖµÂË²¨ */
+/* ï¿½ï¿½ï¿½Þ·ï¿½ï¿½Ä¾ï¿½Öµï¿½Ë²ï¿½ */
 template<int Length> 	
 class Lim_MeanFilter : public MeanFilter<Length>
 {
@@ -183,10 +183,10 @@ class Lim_MeanFilter : public MeanFilter<Length>
 		virtual float f(float num){return MeanFilter<Length>::f(num);}
 	protected:
 		
-		/* ÖØÐ´ÊäÈëº¯Êý */
+		/* ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ëº¯ï¿½ï¿½ */
 		virtual void in(float num)
 		{
-			/* »ñÈ¡Îó²îÖµ */ 	
+			/* ï¿½ï¿½È¡ï¿½ï¿½ï¿½Öµ */ 	
 			deta = num - MeanFilter<Length>::Get_last_Data();
 			if(fabs(deta) < limit || MeanFilter<Length>::Get_flag() == Length) 
 			{
@@ -205,11 +205,11 @@ class Lim_MeanFilter : public MeanFilter<Length>
 };
 
 
-/* Ïû¶¶ÂË²¨ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ */
 class DeboundFilter : public Filter
 {
   /**
-    @note ¾«¶È´ú±í±È½Ïµ½Ð¡ÊýµãµÚ¼¸Î»
+    @note ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½È½Ïµï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ú¼ï¿½Î»
    */
 	public:
 		DeboundFilter(unsigned char acc, unsigned short num = 6)
@@ -241,9 +241,9 @@ class DeboundFilter : public Filter
 		}
 	
 	private:
-		unsigned char accuracy;	//¾«¶È
-		unsigned short N;				//×î´ó±È½Ï´ÎÊý
-		unsigned short count;		//¼ÆÊýÆ÷
+		unsigned char accuracy;	//ï¿½ï¿½ï¿½ï¿½
+		unsigned short N;				//ï¿½ï¿½ï¿½È½Ï´ï¿½ï¿½ï¿½
+		unsigned short count;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		float data;
 };
 

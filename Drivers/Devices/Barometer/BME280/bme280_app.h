@@ -21,7 +21,7 @@
 #define __BME280_APP_H
 
 /* Includes ------------------------------------------------------------------*/  
-#include "my_filters.h"
+#include "Middlewares/Algorithm/Filters/tutu_filters.h"	 
 
 #ifdef __cplusplus
 #include <algorithm>
@@ -30,7 +30,7 @@
 #include "main.h"
 #include <math.h>
 #include "bme280.h"
-#include "drv_i2c.h"	 
+#include "Drivers/Components/I2C/tutu_drv_i2c.h"	 
 	 
 /* Private define ------------------------------------------------------------*/
 									

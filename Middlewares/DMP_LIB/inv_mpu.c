@@ -38,7 +38,7 @@
  */
 #if defined EMPL_TARGET_STM32F4 
 #include "log.h"
-#include "imu.h"
+#include "Drivers/Devices/IMU/imu.h"
 
 unsigned char *mpl_key = (unsigned char*)"eMPL 5.1";
 

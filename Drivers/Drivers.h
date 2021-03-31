@@ -29,7 +29,7 @@
 /** @addtogroup Drivers
   * @{
   */
-#include <twml_config.h>
+#include <tsml_config.h>
 /* Devices header begin */
 #if USE_TWML_BMP280
 #include "Devices/Barometer/BMP280/bmp280.h"

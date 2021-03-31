@@ -24,7 +24,7 @@
 
 /* Includes ------------------------------------------------------------------*/  
 #include "main.h"	 
-#include "drv_i2c.h"
+#include "Drivers/Components/I2C/tutu_drv_i2c.h"
 
 /* Private define ------------------------------------------------------------*/
 #define BMP280_ADDRESS 0xEC  	//Æ÷¼þµØÖ·
@@ -61,7 +61,8 @@
 #define BMP280_OVERSAMP_16X						(0x05)		
 	
 /* Private include -----------------------------------------------------------*/
-#include "my_filters.h"	 
+#include "Middlewares/Algorithm/Filters/tutu_filters.h"	 
+
 /* Private macros ------------------------------------------------------------*/
 	 
 /* Private type --------------------------------------------------------------*/

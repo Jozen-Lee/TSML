@@ -26,7 +26,9 @@
 #ifdef  __cplusplus
 extern "C"{
 #endif
-#include "spi.h"
+	
+#include "main.h"
+
 uint8_t SPI_ReadWriteByte(uint8_t TxData);
 	
 #ifdef  __cplusplus

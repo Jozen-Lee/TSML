@@ -22,16 +22,13 @@
 
 #ifdef __cplusplus
 
-
 /* Includes ------------------------------------------------------------------*/  
 #ifdef ARM_MATH_CM4 
-  #if defined(STM32F405xx) || defined(STM32F407xx) || defined(STM32F429xx)
-		#include "stm32f4xx.h"
-		#include <iterator>	
-		#include <algorithm>
-    #include <arm_math.h>	
-		#include "array.h"
-  #endif
+	#include "stm32f4xx.h"
+	#include <iterator>	
+	#include <algorithm>
+	#include <arm_math.h>	
+	#include "array.h"
 #else
 struct arm_matrix_instance_f32
 {

@@ -20,7 +20,7 @@
 #ifndef INS_H
 #define INS_H
 
-#include "mpl_cal.h"
+#include "Middlewares/Algorithm/MPL/mpl_cal.h"
 
 #ifdef __cplusplus
 
@@ -37,7 +37,7 @@
 
 /* Private include -----------------------------------------------------------*/
 #include <algorithm>
-#include "integral_algorithm.h"
+#include "Middlewares/Algorithm/Intergral/integral_algorithm.h"
 /* Private macros ------------------------------------------------------------*/
 	 
 /* Private type --------------------------------------------------------------*/

@@ -40,7 +40,7 @@
 	
 /***********************上位机调参使用***********************/
 /* 在这里extern需要使用的变量和需要包含的头文件 */
-#include <UpperMonitor.h>
+#include "UpperMonitor.h"
 #include "System_DataPool.h"
 /***********************上位机调参使用***********************/
 
@@ -91,25 +91,25 @@ void UpperMonitor_Sent_Choose(float * data)
     switch(USART0_Sent_Choose_Data[i])
     {
       /* 以下部分用于观察参数曲线 */
-      case 0: data[i]= imu.data.pos.pitch;
-          break;
-			case 1: data[i]= imu.data.pos.roll;
-          break;
-			case 2: data[i]= imu.data.pos.yaw;
-				break;
-			case 3: data[i]= imu.data.accel[0];
-          break;
-			case 4: data[i]= imu.data.accel[1];
-          break;
-			case 5: data[i]= imu.data.accel[2];
-          break;
-			case 6: data[i]= imu.data.gyro[0];
-          break;
-			case 7: data[i]= imu.data.gyro[1];
-          break;
-			case 8: data[i]= imu.data.gyro[2];
-          break;
-      default:break;
+//      case 0: data[i]= imu.data.pos.pitch;
+//          break;
+//			case 1: data[i]= imu.data.pos.roll;
+//          break;
+//			case 2: data[i]= imu.data.pos.yaw;
+//				break;
+//			case 3: data[i]= imu.data.accel[0];
+//          break;
+//			case 4: data[i]= imu.data.accel[1];
+//          break;
+//			case 5: data[i]= imu.data.accel[2];
+//          break;
+//			case 6: data[i]= imu.data.gyro[0];
+//          break;
+//			case 7: data[i]= imu.data.gyro[1];
+//          break;
+//			case 8: data[i]= imu.data.gyro[2];
+//          break;
+//      default:break;
 	  /* 以上部分用于观察参数曲线 */
     }
   }

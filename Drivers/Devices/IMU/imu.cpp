@@ -23,12 +23,12 @@
 			-# 更新数据,数据存储在imu.data中
 					imu.Update();
 		@warning	
-		-# 在DMP_MODE的模式下, MPU6050和MPU6500使用DMP算法，MPU9150和MPU9250使用MPL算法
+		-# 在IMU_DMP_MODE的模式下, MPU6050和MPU6500使用DMP算法，MPU9150和MPU9250使用MPL算法
 		-# 使用MPL算法
 			-# 需要`mpl_cal`的支持
-			-# 需要在魔术棒中加入宏定义`EMPL_TARGET_STM32F4`
+			-# 需要在魔术棒中加入宏定义`EMPL_TARGET_STM32F4`,`EMPL`
 		-# 使用DMP算法
-			-# 需要在魔术棒中加入宏定义`MOTION_DRIVER_TARGET_MSP430`
+			-# 需要在魔术棒中加入宏定义`MOTION_DRIVER_TARGET_MSP430`,`EMPL`
 		
 		
 	******************************************************************************
@@ -47,35 +47,37 @@
 /* Includes ------------------------------------------------------------------*/
 #include "imu.h"
 /* DMP库 */
-#ifdef DMP_MODE
+#ifdef IMU_DMP_MODE
 	#if defined(MPU9150) || defined(MPU9250) 
 		/* 引入MPL运算库 */
-		#include "mpl_cal.h"
+		#include "Middlewares/Algorithm/MPL/mpl_cal.h"
 		
 		/* 引入DMP官方头文件 */
-		#include "mpl.h"
-		#include "quaternion_supervisor.h"
-		#include "fusion_9axis.h"
-		#include "fast_no_motion.h"
-		#include "gyro_tc.h"
-		#include "compass_vec_cal.h"
-		#include "mag_disturb.h"
-		#include "eMPL_outputs.h"
-		#include "data_builder.h"	
+		#include "Middlewares/DMP_Lib/mpl.h"
+		#include "Middlewares/DMP_Lib/quaternion_supervisor.h"
+		#include "Middlewares/DMP_Lib/fusion_9axis.h"
+		#include "Middlewares/DMP_Lib/fast_no_motion.h"
+		#include "Middlewares/DMP_Lib/gyro_tc.h"
+		#include "Middlewares/DMP_Lib/compass_vec_cal.h"
+		#include "Middlewares/DMP_Lib/mag_disturb.h"
+		#include "Middlewares/DMP_Lib/eMPL_outputs.h"
+		#include "Middlewares/DMP_Lib/data_builder.h"	
 	#else
-		#include "dmp_cal.h"
+		#include "Middlewares/Algorithm/DMP/dmp_cal.h"
 	#endif
 #endif
 
 /* 引入相关定义库 */
-#if defined(MPU6050) 
-//	#include "mpu6050.h"
-#elif defined(MPU6500) 
-	#include "mpu6500.h"
-#elif defined(MPU9150) 
-	#include "mpu9150.h"
-#elif defined(MPU9250) 
-	#include "mpu9250.h"	
+#ifdef IMU_IMU_USER_MODE 
+	#if defined(MPU6050) 
+		#include "mpu6050.h"
+	#elif defined(MPU6500) 
+		#include "mpu6500.h"
+	#elif defined(MPU9150) 
+		#include "mpu9150.h"
+	#elif defined(MPU9250) 
+		#include "mpu9250.h"	
+	#endif
 #endif
 
 /* 磁力计校准所需头文件 */
@@ -103,7 +105,7 @@ static signed char gyro_orientation[9] = { 0, 1, 0,
 #endif
 
 /* Private variables ---------------------------------------------------------*/																						 
-_MPU6050 imu;	
+_MPU9250 imu;	
 																					 
 /* Private type --------------------------------------------------------------*/
 /* Private function declarations ---------------------------------------------*/
@@ -293,20 +295,17 @@ uint8_t IMU::Compass_Calibration(void)
 uint8_t IMU_Lib::run_self_test(void)
 {
 	int result;
-	uint8_t to_check;
 	long gyro[3], accel[3]; 
 	
 	/* 自测 */
 #if defined(MPU6500) || defined(MPU9250)
 	result = mpu_run_6500_self_test(gyro, accel, 0);
-	to_check = 0x7;
 #else
 	result = mpu_run_self_test(gyro, accel);
-	to_check = 0x3;
 #endif	
 	
 	/* 测试通过 */
-	if (result == to_check) 
+	if (result == 0x7) 
 	{
 		unsigned short accel_sens;
 		float gyro_sens;
@@ -350,7 +349,7 @@ uint16_t IMU_Lib::inv_row_2_scale(const int8_t *row)
 	return b;
 } 
 
-#if defined(DMP_MODE) 
+#if defined(IMU_DMP_MODE) 
 
 /**
 	*  @brief IMU的IIC接口函数, 用于DMP算法调用
@@ -603,7 +602,7 @@ uint8_t IMU_Lib::IMU_User_Update(IMU_Data_t* imu_data)
  */
 void _MPU6050::Dev_Setting()
 {
-	#if defined(USER_MODE)
+	#if defined(IMU_USER_MODE)
 	 dev.init = IMU_Lib::IMU_User_Init;
 	 dev.update = IMU_Lib::IMU_User_Update;
 	#else	
@@ -627,7 +626,7 @@ void _MPU6050::Dev_Setting()
  */
 void _MPU6500::Dev_Setting()
 {
-	#if defined(USER_MODE)
+	#if defined(IMU_USER_MODE)
 	 dev.init = IMU_Lib::IMU_User_Init;
 	 dev.update = IMU_Lib::IMU_User_Update;
 	#else	
@@ -651,7 +650,7 @@ void _MPU6500::Dev_Setting()
  */
 void _MPU9150::Dev_Setting()
 {
-	#if defined(USER_MODE)
+	#if defined(IMU_USER_MODE)
 	 dev.init = IMU_Lib::IMU_User_Init;
 	 dev.update = IMU_Lib::IMU_User_Update;
 	#else	
@@ -674,7 +673,7 @@ void _MPU9150::Dev_Setting()
  */
 void _MPU9250::Dev_Setting()
 {
-	#if defined(USER_MODE)
+	#if defined(IMU_USER_MODE)
 	 dev.init = IMU_Lib::IMU_User_Init;
 	 dev.update = IMU_Lib::IMU_User_Update;
 	#else	

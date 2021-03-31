@@ -86,8 +86,7 @@ BMP280 bmp280;	//ÊµÀý¶ÔÏó
 		IIC_Device_Write_Byte(&IIC_PIN, BMP280_I2C_ADDR, BMP280_CONFIG_REG, 5<<2);		
 		return 0;
 	}
-  else return 1;  
-	
+  else return 1;  	
 }
 
 /**

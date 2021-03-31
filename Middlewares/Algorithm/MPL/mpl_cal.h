@@ -26,11 +26,11 @@
 
 /* Includes ------------------------------------------------------------------*/  
 #include "main.h"	 
-#include "data_builder.h"
-#include "eMPL_outputs.h"
-#include "hal_outputs.h"
-#include "inv_mpu.h"	
-#include "inv_mpu_dmp_motion_driver.h"	 
+#include "Middlewares/DMP_Lib/data_builder.h"
+#include "Middlewares/DMP_Lib/eMPL_outputs.h"
+#include "Middlewares/DMP_Lib/hal_outputs.h"
+#include "Middlewares/DMP_Lib/inv_mpu.h"	
+#include "Middlewares/DMP_Lib/inv_mpu_dmp_motion_driver.h"	 
 /* Private define ------------------------------------------------------------*/
 	
 #ifdef __cplusplus
@@ -39,7 +39,7 @@
 
 /* Private include -----------------------------------------------------------*/
 #include <algorithm>
-#include "my_filters.h"
+#include "Middlewares/Algorithm/Filters/tutu_filters.h"
 /* Private macros ------------------------------------------------------------*/
 	 
 /* Private type --------------------------------------------------------------*/

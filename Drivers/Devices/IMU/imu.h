@@ -24,11 +24,11 @@
 extern "C" {
 #endif
 	#include "main.h"
-	#include "Drivers/Components/I2C/tutu_drv_i2c.h"
 	#include "imu_config.h"
-	#include "ml_math_func.h"
-	#include "inv_mpu.h"
-	#include "inv_mpu_dmp_motion_driver.h"
+	#include "Drivers/Components/I2C/tutu_drv_i2c.h"	
+	#include "Middlewares/DMP_Lib/ml_math_func.h"
+	#include "Middlewares/DMP_Lib/inv_mpu.h"
+	#include "Middlewares/DMP_Lib/inv_mpu_dmp_motion_driver.h"
 #ifdef __cplusplus
 }
 #endif
@@ -42,7 +42,7 @@ extern "C" {
 	 
 /* Private type --------------------------------------------------------------*/
 
-/* ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½Ý½á¹¹ï¿½ï¿½ */
+/* ×ËÌ¬Êý¾Ý½á¹¹Ìå */
 typedef struct 
 {
 	float pitch;
@@ -50,33 +50,33 @@ typedef struct
 	float yaw;
 } Pos_t;
 
-/* IMUï¿½ï¿½ï¿½Ý½á¹¹ï¿½ï¿½ */
+/* IMUÊý¾Ý½á¹¹Ìå */
 typedef struct
 {
-	float temp;						// ï¿½Â¶ï¿½
-	float gyro[3];				// xyzï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
-	float accel[3];				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½, xyzï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½(Î´ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½)
-	float compass[3];			// xyzï¿½ï¿½ï¿½ï¿½ï¿½Ç¿
-	float com_accel[3];		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½, xyzï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½(ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½)
-	float g_com_accel[3]; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½, xyzï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½(ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½)
-	Pos_t pos;						// ï¿½ï¿½Ì¬ï¿½ï¿½
+	float temp;						// ÎÂ¶È
+	float gyro[3];				// xyzÈýÖá½ÇËÙ¶È
+	float accel[3];				// Ìå×ø±êÏµÏÂ, xyzÈýÖá¼ÓËÙ¶È(Î´ÏûÈ¥ÖØÁ¦¼ÓËÙ¶È)
+	float compass[3];			// xyzÈýÖá´ÅÇ¿
+	float com_accel[3];		// Ìå×ø±êÏµÏÂ, xyzÈýÖá¼ÓËÙ¶È(ÏûÈ¥ÖØÁ¦¼ÓËÙ¶È)
+	float g_com_accel[3]; // ÊÀ½ç×ø±êÏµÏÂ, xyzÈýÖá¼ÓËÙ¶È(ÏûÈ¥ÖØÁ¦¼ÓËÙ¶È)
+	Pos_t pos;						// ×ËÌ¬½Ç
 } IMU_Data_t;
 
-typedef uint8_t (*imu_init_fptr_t)(void);																													// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
-typedef uint8_t (*imu_update_fptr_t)(IMU_Data_t* imu_data);																				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
-typedef uint8_t (*imu_readwrite_fptr_t)(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *data);	 	// IICï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ 
-typedef void (*imu_delay_fptr_t)(uint32_t period);																				 				// ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
-typedef void (*imu_getms_fptr_t)(unsigned long *time);																						// ï¿½ï¿½È¡Ê±ï¿½äº¯ï¿½ï¿½Ö¸ï¿½ï¿½
+typedef uint8_t (*imu_init_fptr_t)(void);																													// ³õÊ¼»¯º¯ÊýÖ¸Õë
+typedef uint8_t (*imu_update_fptr_t)(IMU_Data_t* imu_data);																				// ¸üÐÂÊý¾Ýº¯ÊýÖ¸Õë
+typedef uint8_t (*imu_readwrite_fptr_t)(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *data);	 	// IIC¶ÁÐ´º¯ÊýÖ¸Õë 
+typedef void (*imu_delay_fptr_t)(uint32_t period);																				 				// ÑÓÊ±º¯ÊýÖ¸Õë
+typedef void (*imu_getms_fptr_t)(unsigned long *time);																						// »ñÈ¡Ê±¼äº¯ÊýÖ¸Õë
 
-/* IMUï¿½ï¿½ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½ */
+/* IMUÇý¶¯½á¹¹Ìå */
 typedef struct
 {
-	imu_init_fptr_t init;					// ï¿½ï¿½Ê¼ï¿½ï¿½
-	imu_update_fptr_t update;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	imu_readwrite_fptr_t read;		// ï¿½ï¿½È¡
-	imu_readwrite_fptr_t write;		// Ð´ï¿½ï¿½
-	imu_delay_fptr_t delay;				// ï¿½ï¿½Ê±
-	imu_getms_fptr_t	getms;			// ï¿½ï¿½È¡Ê±ï¿½ï¿½
+	imu_init_fptr_t init;					// ³õÊ¼»¯
+	imu_update_fptr_t update;			// ¸üÐÂÊý¾Ý
+	imu_readwrite_fptr_t read;		// ¶ÁÈ¡
+	imu_readwrite_fptr_t write;		// Ð´Èë
+	imu_delay_fptr_t delay;				// ÑÓÊ±
+	imu_getms_fptr_t	getms;			// »ñÈ¡Ê±¼ä
 } imu_dev;
 
 class IMU_Lib
@@ -92,8 +92,8 @@ public:
 	static uint8_t IMU_MPL_Update(IMU_Data_t* imu_data);
 
 private:	
-	static uint16_t inv_row_2_scale(const int8_t *row);	// ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
-	static uint8_t run_self_test(void);									// ï¿½Ô¼ï¿½
+	static uint16_t inv_row_2_scale(const int8_t *row);	// ·½Ïò×ª»»
+	static uint8_t run_self_test(void);									// ×Ô¼ì
 };
 
 class IMU
@@ -101,18 +101,18 @@ class IMU
 public:
 	IMU(){};
 	~IMU(){};
-	uint8_t IMU_Type;																																		// IMUï¿½Íºï¿½
-	IMU_Data_t data;																																		// ï¿½ï¿½ï¿½Ý´æ´¢ï¿½á¹¹ï¿½ï¿½
-	imu_dev dev;																																				// ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½
-	IIC_PIN_Typedef IIC_PIN;																														// IICï¿½Ó¿ï¿½
-	uint8_t Init(GPIO_TypeDef *gpiox, uint32_t scl_pinx, uint32_t sda_pinx);						// ï¿½ï¿½Ê¼ï¿½ï¿½
-	virtual uint8_t Update(void);																												// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	virtual void Dev_Setting();																													// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	uint8_t IMU_Type;																																		// IMUÐÍºÅ
+	IMU_Data_t data;																																		// Êý¾Ý´æ´¢½á¹¹Ìå
+	imu_dev dev;																																				// Çý¶¯½á¹¹Ìå
+	IIC_PIN_Typedef IIC_PIN;																														// IIC½Ó¿Ú
+	uint8_t Init(GPIO_TypeDef *gpiox, uint32_t scl_pinx, uint32_t sda_pinx);						// ³õÊ¼»¯
+	virtual uint8_t Update(void);																												// ¸üÐÂÊý¾Ý
+	virtual void Dev_Setting();																													// Çý¶¯ÅäÖÃ
 
 private:
 #ifdef USE_MAG_CAIL
-	uint8_t Get_Compass_State(void);																										// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£×¼×´Ì¬
-	uint8_t Compass_Calibration(void);																									// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£×¼
+	uint8_t Get_Compass_State(void);																										// »ñÈ¡´ÅÁ¦¼ÆÐ£×¼×´Ì¬
+	uint8_t Compass_Calibration(void);																									// ´ÅÁ¦¼ÆÐ£×¼
 #endif
 };	
 
@@ -160,7 +160,7 @@ public:
 #endif
 
 /* Exported variables --------------------------------------------------------*/
-extern _MPU6050 imu;
+extern _MPU9250 imu;
 #endif
 /* Exported function declarations --------------------------------------------*/
 
