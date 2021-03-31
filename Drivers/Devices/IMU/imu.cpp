@@ -105,7 +105,7 @@ static signed char gyro_orientation[9] = { 0, 1, 0,
 #endif
 
 /* Private variables ---------------------------------------------------------*/																						 
-_MPU9250 imu;	
+_MPU6050 imu;	
 																					 
 /* Private type --------------------------------------------------------------*/
 /* Private function declarations ---------------------------------------------*/
@@ -183,6 +183,9 @@ uint8_t IMU::Init(GPIO_TypeDef *gpiox, uint32_t scl_pinx, uint32_t sda_pinx)
 	/* 对IMU进行初始化 */
 	res = dev.init();
 	
+	/* 计算角速度偏差值 */
+	dmp_lib.Gyroscope_Init(&IIC_PIN, &data.offset[0], &data.offset[1], &data.offset[2]);
+	
 	if (res != 0)
 	{
 			HAL_Delay(100);
@@ -207,7 +210,6 @@ uint8_t IMU::Update(void)
 {
 	uint8_t res;
 	res = dev.update(&data);
-//	mpu_mpl_get_data(&data.pos.pitch, &data.pos.roll, &data.pos.yaw);
 	return res;
 }
 
@@ -557,6 +559,11 @@ uint8_t IMU_Lib::IMU_DMP_Update(IMU_Data_t* imu_data)
 	
 	/* 获取角速度 */
 	dmp_lib.Get_Gyro(&imu_data->gyro[0], &imu_data->gyro[1], &imu_data->gyro[2]);
+	
+	/* 角速度减去偏差量 */
+	imu_data->gyro[0] = imu_data->gyro[0] - imu_data->offset[0];
+	imu_data->gyro[1] = imu_data->gyro[1] - imu_data->offset[1];
+	imu_data->gyro[2] = imu_data->gyro[2] - imu_data->offset[2];
 	
 	/* 获取加速度 */
 	dmp_lib.Get_Accel(&imu_data->accel[0], &imu_data->accel[1], &imu_data->accel[2]);	

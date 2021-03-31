@@ -59,6 +59,7 @@ typedef struct
 	float compass[3];			// xyz三轴磁强
 	float com_accel[3];		// 体坐标系下, xyz三轴加速度(消去重力加速度)
 	float g_com_accel[3]; // 世界坐标系下, xyz三轴加速度(消去重力加速度)
+	float offset[3];			// 角速度的三轴偏差值
 	Pos_t pos;						// 姿态角
 } IMU_Data_t;
 
@@ -160,7 +161,7 @@ public:
 #endif
 
 /* Exported variables --------------------------------------------------------*/
-extern _MPU9250 imu;
+extern _MPU6050 imu;
 #endif
 /* Exported function declarations --------------------------------------------*/
 

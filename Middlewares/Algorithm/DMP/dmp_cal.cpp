@@ -48,6 +48,41 @@ DMP dmp_lib;
 /* Private function prototypes -----------------------------------------------*/
 
 /**
+ *  @brief   角速度范围的初始化
+ * 	@param[out] gxoffset, gyoffset, gzoffset 三轴角速度原始数据
+ *  @return  0 success
+						 1 fail
+ */
+void DMP::Gyroscope_Init(IIC_PIN_Typedef* iic_pin, float* gxoffset, float* gyoffset, float* gzoffset)
+{
+	unsigned char buf[6];
+	short gx,gy,gz=0;
+	int i=0,cnt=0,sum_x=0,sum_y=0,sum_z=0;
+	
+	for(i = 0;i < 1024 ;i++)
+	{
+		if(IIC_Device_Read_Len(iic_pin, MPU_ADDR, MPU_GYRO_XOUTH_REG, 6, buf) == 0)
+		{
+      gx=(short)(((unsigned short int)buf[0]<<8)|buf[1]);
+      gy=(short)(((unsigned short int)buf[2]<<8)|buf[3]);
+      gz=(short)(((unsigned short int)buf[4]<<8)|buf[5]);
+			
+			/* 前300次数据不用 */
+			if(i>300)
+			{
+        sum_x += gx;
+        sum_y += gy;
+				sum_z += gz;
+				cnt ++;
+			}
+		}
+	}
+	*gxoffset = ((float)sum_x)/((float)cnt);
+  *gyoffset = ((float)sum_y)/((float)cnt);
+  *gzoffset = ((float)sum_z)/((float)cnt);
+}
+
+/**
  *  @brief 获取角速度  
  * 	@param[out] gx,gy,gz 三轴角速度原始数据
  *  @return  0 success
