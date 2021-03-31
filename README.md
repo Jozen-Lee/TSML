@@ -93,8 +93,8 @@ extern "C" {
 #define USE_TSML_KALMAN                     0
 #define USE_TSML_INS                        0
 #define USE_TSML_INTERGRAL                  0
-  
-#define USE_TSML_LAB_UM                     0
+
+#define USE_TSML_LAB_UM						0
 #define USE_TSML_ANO_UM                     0
 
 #ifdef __cplusplus
