@@ -23,7 +23,7 @@
 #include "inv_mpu_dmp_motion_driver.h"
 #include "dmpKey.h"
 #include "dmpmap.h"
-
+#include "imu.h"
 /* The following functions must be defined for this platform:
  * i2c_write(unsigned char slave_addr, unsigned char reg_addr,
  *      unsigned char length, unsigned char const *data)
@@ -33,20 +33,18 @@
  * get_ms(unsigned long *count)
  */
 #if defined EMPL_TARGET_STM32F4
-#include "Drivers/Devices/IMU/imu.h"
-   
+ 
 #define i2c_write   dmp_i2c_write
 #define i2c_read    dmp_i2c_read
 #define get_ms      dmp_get_ms
 
 
 #elif defined MOTION_DRIVER_TARGET_MSP430
-#include "msp430.h"
-#include "msp430_clock.h"
-#define delay_ms    msp430_delay_ms
-#define get_ms      msp430_get_clock_ms
-#define log_i(...)     do {} while (0)
-#define log_e(...)     do {} while (0)
+
+#define delay_ms    dmp_delay_ms
+#define get_ms      dmp_get_ms
+#define log_i     	printf
+#define log_e    		printf
 
 #elif defined EMPL_TARGET_MSP430
 #include "msp430.h"
