@@ -15,44 +15,44 @@
   ==============================================================================
                               How to use this driver  
   ==============================================================================
-	 * @brief ¹¹ÔìÒ»¸öÐÂµÄ¿¨¶ûÂüÂË²¨Æ÷ÊµÀý
-	 * ¹¹ÔìÍê³Éºó£¬±ØÐë°´ÕÕÎïÀíÄ£ÐÍÊÖ¶¯¸ø A¡¢B¡¢H ¸³Öµ
+	 * @brief ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ÂµÄ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½Êµï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éºó£¬±ï¿½ï¿½ë°´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ Aï¿½ï¿½Bï¿½ï¿½H ï¿½ï¿½Öµ
 	 * 
-	 * @param stateDim ×´Ì¬¿Õ¼äÎ¬¶È£¬¼´ÄãÕû¸ö¿¨¶ûÂüÂË²¨Æ÷»á½Ó´¥µ½¶àÉÙÖÖÎïÀíÁ¿¡£
-	 * ÕâÐ©ÎïÀíÁ¿Ö®¼ä±ØÐëÊÇÏßÐÔµÄ£¬¾ÍÊÇËµËûÃÇÖ®¼äµÄ¹ØÏµÖ»ÓÐ¼Ó¼õ³Ë³ý¡¢»ý·Ö¡¢Î¢·Ö
-	 * ÀýÈç Î»ÖÃ-ËÙ¶È-¼ÓËÙ¶È µÄ×´Ì¬¿Õ¼ä£¬¾ÍÓÐ3¸öÎ¬¶È
+	 * @param stateDim ×´Ì¬ï¿½Õ¼ï¿½Î¬ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½Ð©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÔµÄ£ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä¹ï¿½ÏµÖ»ï¿½Ð¼Ó¼ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½Î¢ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ Î»ï¿½ï¿½-ï¿½Ù¶ï¿½-ï¿½ï¿½ï¿½Ù¶ï¿½ ï¿½ï¿½×´Ì¬ï¿½Õ¼ä£¬ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½Î¬ï¿½ï¿½
 	 * 
-	 * @param measureDim ²âÁ¿¾ØÕóÎ¬¶È£¬¼´ÓÐ¶àÉÙ¸ö´«¸ÐÆ÷
-	 * ÀýÈçÄãÓÐ ¾ø¶ÔÂëÅÌ£¨½Ç¶È£©-Ïà¶ÔÂëÅÌ£¨½ÇËÙ¶È£©-ÍÓÂÝÒÇ£¨½Ç¼ÓËÙ¶È£©£¬¾ÍÓÐ3¸öÎ¬¶È
+	 * @param measureDim ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¬ï¿½È£ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì£ï¿½ï¿½Ç¶È£ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì£ï¿½ï¿½ï¿½ï¿½Ù¶È£ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½ï¿½Ç¼ï¿½ï¿½Ù¶È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½Î¬ï¿½ï¿½
 	 * 
-	 * @param controlDim ¿ØÖÆ¾ØÕóÎ¬¶È£¬¼´ÓÐ¶àÉÙ¸ö¿ØÖÆÁ¿¿ÉÒÔÓÃ½øÈ¥×öÔ¤²â¡£
-	 * Ò»°ãÒ²Ö»ÓÐ1¸ö£¬¾ÍÊÇÄã·¢¸øµçµ÷µÄµçÁ÷£¬ËüÓë¼ÓËÙ¶ÈÓÐ¹Ø
+	 * @param controlDim ï¿½ï¿½ï¿½Æ¾ï¿½ï¿½ï¿½Î¬ï¿½È£ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã½ï¿½È¥ï¿½ï¿½Ô¤ï¿½â¡£
+	 * Ò»ï¿½ï¿½Ò²Ö»ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã·¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½Ð¹ï¿½
 	 * 
-	 * @param processErr ¹ý³ÌÔëÉù
-	 * Õû¸ö»·¾³ÖÐÓÐ¶àÉÙ²»¿É¿ØÒòËØ£¬±ÈÈçÏòÇ°ÔË¶¯Í»È»×²³µ£¬¾ÍÊÇÒ»ÖÖ¹ý³ÌÔëÉù¡£
-	 * Êý×ÖÔ½´ó£¬ÔëÉùÔ½´ó¡£ 
+	 * @param processErr ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½Ù²ï¿½ï¿½É¿ï¿½ï¿½ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ë¶ï¿½Í»È»×²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ 
 	 * 
-	 * @param measureErr ²âÁ¿ÔëÉù
-	 * ´«¸ÐÆ÷ÒýÈëµÄÔëÉù¡£Ò²¾ÍÊÇ´«¸ÐÆ÷¾«¶È¡£
-	 * Êý×ÖÔ½´ó£¬ÔëÉùÔ½´ó¡£ 
+	 * @param measureErr ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ 
 	 
-	  @note QºÍRµ÷½ÚµÄÔ­Ôò
-		-# QºÍRµÄ´óÐ¡±ÈÖµ¾ö¶¨ÁËÔ¤²âÖµºÍ²âÁ¿ÖµµÄÈ¨ÖØ¡£
-				R²»±ä£¬QÔ½´ó£¬Ôò¸üÐÅÈÎ²âÁ¿Öµ¡£Q²»±ä£¬RÔ½´ó£¬Ôò¸üÐÅÈÎÔ¤²âÖµ
-		-# QµÄ¸÷¸ö²ÎÊý´óÐ¡¹ØÏµ¾ö¶¨ÁËÔ¤²âÊý¾ÝµÄ¿ÉÐÅ¶È£¬RµÄ¸÷¸ö²ÎÊý´óÐ¡¹ØÏµ¾ö¶¨ÁË²âÁ¿Êý¾ÝµÄ¿ÉÐÅ¶È
-				Ïà¶ÔÊýÖµÔ½Ð¡£¬¿ÉÐÅ¶ÈÔ½¸ß
+	  @note Qï¿½ï¿½Rï¿½ï¿½ï¿½Úµï¿½Ô­ï¿½ï¿½
+		-# Qï¿½ï¿½Rï¿½Ä´ï¿½Ð¡ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½Öµï¿½Í²ï¿½ï¿½ï¿½Öµï¿½ï¿½È¨ï¿½Ø¡ï¿½
+				Rï¿½ï¿½ï¿½ä£¬QÔ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½Öµï¿½ï¿½Qï¿½ï¿½ï¿½ä£¬RÔ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½Öµ
+		-# Qï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ÝµÄ¿ï¿½ï¿½Å¶È£ï¿½Rï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÝµÄ¿ï¿½ï¿½Å¶ï¿½
+				ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÔ½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ï¿½Ô½ï¿½ï¿½
 		
-		@note ÒÔ¿¨¶ûÂüÂË²¨»ñÈ¡mpu6050µÄ½Ç¶ÈÎªÀý
+		@note ï¿½Ô¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½È¡mpu6050ï¿½Ä½Ç¶ï¿½Îªï¿½ï¿½
 		
-		-# È·¶¨¿ØÖÆÄ£ÐÍ,È·¶¨¸÷¸ö¾ØÕóµÄÎ¬¶È
+		-# È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½,È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¬ï¿½ï¿½
 		#define ANGLE_STATEDIM 		2
 		#define ANGLE_MEASUREDIM 	1
 		#define ANGLE_CONTROLDIM	1
 		
-		-# ¹¹Ôì¿¨¶ûÂüÂË²¨Æ÷,È·¶¨QºÍRµÄÖµ
+		-# ï¿½ï¿½ï¿½ì¿¨ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½,È·ï¿½ï¿½Qï¿½ï¿½Rï¿½ï¿½Öµ
 		KalmanFilter<ANGLE_STATEDIM, ANGLE_MEASUREDIM, ANGLE_CONTROLDIM> Kalman_Angle(5e-3, 5e-1);
 		
-		-# ¸ù¾ÝÄ£ÐÍ,ÊÖ¶¯¸øA,H,B¾ØÕó¸³Öµ,Èô³õÊ¼×´Ì¬È·¶¨,Ò²¿ÉÒÔ¸ø³õÊ¼×´Ì¬¸³Öµ(Ã»ÓÐÒ²Ã»¹ØÏµ,Ëü»áºÜ¿ìÊÕÁ²)
+		-# ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½,ï¿½Ö¶ï¿½ï¿½ï¿½A,H,Bï¿½ï¿½ï¿½ï¿½Öµ,ï¿½ï¿½ï¿½ï¿½Ê¼×´Ì¬È·ï¿½ï¿½,Ò²ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½Ê¼×´Ì¬ï¿½ï¿½Öµ(Ã»ï¿½ï¿½Ò²Ã»ï¿½ï¿½Ïµ,ï¿½ï¿½ï¿½ï¿½Ü¿ï¿½ï¿½ï¿½ï¿½ï¿½)
 		void Kalman_Init(void)
 		{
 			Array<float , ANGLE_STATEDIM * ANGLE_STATEDIM>  _A{1.0f, -0.005f, 0, 1.0f};
@@ -68,7 +68,7 @@
 			Kalman_Angle.init(state, 0.5);
 		}
 
-		-# ´«Èë¸÷¸ö´«¸ÐÆ÷´¦ÀíºóµÄÊý¾Ý,½øÐÐ¿¨¶ûÂüÂË²¨,²¢Êä³öËùÐèÒªµÄ¿¨¶ûÂüÂË²¨ºóµÄÊý¾Ý
+		-# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		void Kalman_Get_Angle(float Accel,float Gyro, float* angle)
 		{
 			Array<float , ANGLE_STATEDIM> res;
@@ -79,7 +79,7 @@
 			*angle = res[0];
 		}
 		
-		-# ÔÚÆäËûº¯ÊýÖÐÊ¹ÓÃÒÔÏÂÓï¾äÀ´¸üÐÂ½Ç¶È
+		-# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â½Ç¶ï¿½
 		Accel_Angle = atan2(mpl_var.accel[1], mpl_var.accel[2]) * 180.0f / 3.14f;
 		Gyro = mpl_var.gyro[0] * 180.0f / 3.14f;
 		Kalman_Get_Angle(Accel_Angle,Gyro,&angle);
@@ -99,57 +99,16 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "kalman.h"
-#include "mpl_cal.h"
-#include "inertial_navigation.h"
 
 /* Private Includes ------------------------------------------------------------*/
-#include "System_DataPool.h"
 
 /* Private define ------------------------------------------------------------*/
-#define HEIGHT_STATEDIM 		3
-#define HEIGHT_MEASUREDIM 	2
-#define HEIGHT_CONTROLDIM		1
 
 /* Private variables ---------------------------------------------------------*/
 /* Private type --------------------------------------------------------------*/
 /* Private function declarations ---------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
-KalmanFilter<HEIGHT_STATEDIM, HEIGHT_MEASUREDIM, HEIGHT_CONTROLDIM> IMU_BMx_Height;
 
-void Kalman_Height_Init(void)
-{
-	float sam_frq = 1000.0f;
-	float T = 1.0f / sam_frq;
-	
-	Array<float , HEIGHT_STATEDIM * HEIGHT_STATEDIM>  _A{1.f , T, 0.5f*T*T, 0, 1.f, T, 0 , 0, 1.f};
-	Mat<HEIGHT_STATEDIM, HEIGHT_STATEDIM> A(_A);
-	Array<float , HEIGHT_STATEDIM * HEIGHT_MEASUREDIM>  _H{1.f, 0, 0, 0, 0, 1.f};	
-	Mat<HEIGHT_MEASUREDIM, HEIGHT_STATEDIM> H(_H);
-	Array<float , HEIGHT_STATEDIM * HEIGHT_CONTROLDIM>  _B{0, 0, 0};	
-	Mat<HEIGHT_STATEDIM, HEIGHT_CONTROLDIM> B(_B);	
-	Array<float , HEIGHT_STATEDIM>  _Q{0.01f, 0.0001f, 0.001f};
-	Array<float , HEIGHT_MEASUREDIM>  _R{1.f, 5.f};	
-	Array<float , HEIGHT_STATEDIM>	state{0, 0, 0};
-	/* ³õÊ¼»¯¿¨¶ûÂüÔËËã¾ØÕó */
-	IMU_BMx_Height.setA(A);
-	IMU_BMx_Height.setH(H);
-	IMU_BMx_Height.setB(B);
-	IMU_BMx_Height.setQ(_Q);
-	IMU_BMx_Height.setR(_R);
-	
-	/* ³õÊ¼»¯×´Ì¬ */
-	IMU_BMx_Height.init(state, 0.1f);
-}
 
-float Kalman_Get_Height(void)
-{
-	float height = (float)bme280.height; 
-	Array<float , HEIGHT_STATEDIM> res;
-	Array<float , HEIGHT_CONTROLDIM> control{0};
-	Array<float , HEIGHT_MEASUREDIM> measure{height , imu.data.g_com_accel[2]};
-	IMU_BMx_Height.predict(control);
-	res = IMU_BMx_Height.correct(measure);
-	return res[0];	
-}
 
 	/************************ COPYRIGHT(C) SCUT-ROBOTLAB **************************/
