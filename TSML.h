@@ -30,11 +30,7 @@
   * @{
   */
   
-/* Drivers */
-#include "Drivers/Drivers.h"
-
-/* Middlewares */
-#include "Middlewares/Middlewares.h"
+#include "tsml_config.h"
 
 /**
   * @}
