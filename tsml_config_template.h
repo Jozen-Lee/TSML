@@ -22,8 +22,8 @@
   * Copyright (c) 2019 - ~, SCUT RobotLab Development Team, all rights reserved.
   */
 
-#ifndef __SRML_CONFIG_H__
-#define __SRML_CONFIG_H__
+#ifndef __TSML_CONFIG_H__
+#define __TSML_CONFIG_H__
 
 /* ########################## Module Selection ############################## */
 /**
@@ -65,41 +65,41 @@
 /* Drivers ----------------------------------------------------*/
 
 /* Devices header begin */
-#if USE_TWML_BMP280
-#include "Devices/Barometer/BMP280/bmp280.h"
+#if USE_TSML_BMP280
+#include "Drivers/Devices/Barometer/BMP280/bmp280.h"
 #endif
-#if USE_TWML_BME280
-#include "Devices/Barometer/BME280/bme280_app.h"
+#if USE_TSML_BME280
+#include "Drivers/Devices/Barometer/BME280/bme280_app.h"
 #endif
-#if USE_TWML_FLASH
-#include "Devices/FLASH/flash.h"
+#if USE_TSML_FLASH
+#include "Drivers/Devices/FLASH/flash.h"
 #endif
 #if USE_TSML_IMU
-#include "Devices/IMU/imu.h"
+#include "Drivers/Devices/IMU/imu.h"
 #endif
 #if USE_TSML_MT9V032
-#include "Devices/MT9V034/MT9V032.h"
+#include "Drivers/Devices/MT9V034/MT9V032.h"
 #endif
 #if USE_TSML_SDCARD
-#include "Devices/SDcard/SDcard.h"
+#include "Drivers/Devices/SDcard/SDcard.h"
 #endif
 #if USE_TSML_SERVO
-#include "Devices/Servo/Servo.h"
+#include "Drivers/Devices/Servo/Servo.h"
 #endif
 #if USE_TSML_SK6812
-#include "Devices/SK6812/sk6812.h"
+#include "Drivers/Devices/SK6812/sk6812.h"
 #endif
 #if USE_TSML_KEY
-#include "Devices/KEY/key.h"
+#include "Drivers/Devices/KEY/key.h"
 #endif
 /* Devices header end */
 
 /* Components header begin */
 #if USE_TSML_I2C
-#include "Components/I2C/tutu_drv_i2c.h"
+#include "Drivers/Components/I2C/tutu_drv_i2c.h"
 #endif
 #if USE_TSML_SPI
-#include "Components/SPI/tutu_driver_spi.h"
+#include "Drivers/Components/SPI/tutu_driver_spi.h"
 #endif
 /* Components header end */
 
@@ -108,33 +108,34 @@
 
 /* Algorithms header begin */
 #if USE_TSML_DMP
-#include "Algorithm/DMP/dmp_cal.h"
+#include "Middlewares/Algorithm/DMP/dmp_cal.h"
 #endif
 #if USE_TSML_MPL
-#include "Algorithm/MPL/mpl_cal.h"
+#include "Middlewares/Algorithm/MPL/mpl_cal.h"
 #endif
 #if USE_TSML_FILTERS
-#include "Algorithm/Filters/tutu_filters.h"
+#include "Middlewares/Algorithm/Filters/tutu_filters.h"
 #endif
 #if USE_TSML_KALMAN
-#include "Algorithm/Kalman/kalman.h"
+#include "Middlewares/Algorithm/Kalman/kalman.h"
 #endif
 #if USE_TSML_INS
-#include "Algorithm/INS/ins.h"
+#include "Middlewares/Algorithm/INS/ins.h"
 #endif
 #if USE_TSML_INTERGRAL
-#include "Algorithm/Intergral/integral_algorithm.h"
+#include "Middlewares/Algorithm/Intergral/integral_algorithm.h"
 #endif
 /* Algorithms header end */
 
 /* UpperMonitor header begin */
 #if USE_TSML_LAB_UM
-#include "UpperMonitor/SCUT_LAB/UpperMonitor.h"
+#include "Middlewares/UpperMonitor/SCUT_LAB/UpperMonitor.h"
 #endif
 #if USE_TSML_ANO_UM
-#include "UpperMonitor/ANO/Ano_UpperMonitor.h"
+#include "Middlewares/UpperMonitor/ANO/Ano_UpperMonitor.h"
 #endif
 /* UpperMonitor header end */
+
 
 #endif /* __SRML_CONFIG_H__ */
 
