@@ -758,15 +758,6 @@ int mpu_init(struct int_param_s *int_param)
     }
 
 #elif defined MPU6500
-#define MPU6500_MEM_REV_ADDR    (0x17)
-    if (mpu_read_mem(MPU6500_MEM_REV_ADDR, 1, &rev))
-        return -1;
-    if (rev == 0x1)
-        st.chip_cfg.accel_half = 0;
-    else {
-        log_e("Unsupported software product rev %d.\n", rev);
-        return -1;
-    }
     /* MPU6500 shares 4kB of memory between the DMP and the FIFO. Since the
      * first 3kB are needed by the DMP, we'll use the last 1kB for the FIFO.
      */
