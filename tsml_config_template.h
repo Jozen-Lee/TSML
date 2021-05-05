@@ -41,6 +41,7 @@
 #define USE_TSML_SERVO                      0
 #define USE_TSML_SK6812                     0
 #define USE_TSML_KEY                        0
+#define USE_TSML_INFRARED                   0
   
 #define USE_TSML_I2C                        0
 #define USE_TSML_SPI                        0
@@ -91,6 +92,9 @@
 #endif
 #if USE_TSML_KEY
 #include "Drivers/Devices/KEY/key.h"
+#endif
+#if USE_TSML_INFRARED
+#include "Drivers/Devices/Infrared/infrared.h"
 #endif
 /* Devices header end */
 

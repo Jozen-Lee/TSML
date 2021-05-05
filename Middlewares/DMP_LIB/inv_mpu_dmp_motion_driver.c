@@ -24,6 +24,7 @@
 #include "dmpKey.h"
 #include "dmpmap.h"
 #include "Drivers/Devices/IMU/imu.h"
+
 /* The following functions must be defined for this platform:
  * i2c_write(unsigned char slave_addr, unsigned char reg_addr,
  *      unsigned char length, unsigned char const *data)
@@ -33,7 +34,8 @@
  * get_ms(unsigned long *count)
  */
 #if defined EMPL_TARGET_STM32F4
- 
+
+   
 #define i2c_write   dmp_i2c_write
 #define i2c_read    dmp_i2c_read
 #define get_ms      dmp_get_ms

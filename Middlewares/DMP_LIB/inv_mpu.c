@@ -37,7 +37,6 @@
  * fabsf(float x)
  * min(int a, int b)
  */
-
 #if defined EMPL_TARGET_STM32F4 
 #include "log.h"
 
@@ -58,15 +57,14 @@ unsigned char *mpl_key = (unsigned char*)"eMPL 5.1";
 #define delay_ms    dmp_delay_ms
 #define get_ms      dmp_get_ms
 
-
-#define log_i 	printf	//ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢
-#define log_e  	printf	//ï¿½ï¿½Ó¡ï¿½ï¿½Ï¢
+#define log_i 	printf	//´òÓ¡ÐÅÏ¢
+#define log_e  	printf	//´òÓ¡ÐÅÏ¢
 
 /* labs is already defined by TI's toolchain. */
 /* fabs is for doubles. fabsf is for floats. */
 #define fabs        fabsf
 #define min(a,b) ((a<b)?a:b)
-
+	
 #elif defined EMPL_TARGET_MSP430
 #include "msp430.h"
 #include "msp430_i2c.h"
@@ -710,7 +708,7 @@ int mpu_read_reg(unsigned char reg, unsigned char *data)
  */
 int mpu_init(struct int_param_s *int_param)
 {
-    unsigned char data[6], rev;
+    unsigned char data[6];
 
     /* Reset device. */
     data[0] = BIT_RESET;
@@ -724,40 +722,8 @@ int mpu_init(struct int_param_s *int_param)
         return -1;
 
    st.chip_cfg.accel_half = 0;
-		
-#if defined MPU6050
-    /* Check product revision. */
-    if (i2c_read(st.hw->addr, st.reg->accel_offs, 6, data))
-        return -1;
-    rev = ((data[5] & 0x01) << 2) | ((data[3] & 0x01) << 1) |
-        (data[1] & 0x01);
 
-    if (rev) {
-        /* Congrats, these parts are better. */
-        if (rev == 1)
-            st.chip_cfg.accel_half = 1;
-        else if (rev == 2)
-            st.chip_cfg.accel_half = 0;
-        else {
-            log_e("Unsupported software product rev %d.\n", rev);
-            return -1;
-        }
-    } else {
-        if (i2c_read(st.hw->addr, st.reg->prod_id, 1, data))
-            return -1;
-        rev = data[0] & 0x0F;
-        if (!rev) {
-            log_e("Product ID read as 0 indicates device is either "
-                "incompatible or an MPU3050.\n");
-            return -1;
-        } else if (rev == 4) {
-            log_i("Half sensitivity part found.\n");
-            st.chip_cfg.accel_half = 1;
-        } else
-            st.chip_cfg.accel_half = 0;
-    }
-
-#elif defined MPU6500
+#ifdef MPU6500
     /* MPU6500 shares 4kB of memory between the DMP and the FIFO. Since the
      * first 3kB are needed by the DMP, we'll use the last 1kB for the FIFO.
      */
