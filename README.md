@@ -2,7 +2,7 @@
 
 <Font><font size="5">**煜个头头工作室嵌入式软件中间件层库**</Font>
 
-![](https://img.shields.io/badge/当前版本-V1.0-blue.svg)
+![](https://img.shields.io/badge/当前版本-V1.2-blue.svg)
 
 ## Summary 简介
 
